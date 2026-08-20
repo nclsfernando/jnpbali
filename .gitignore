@@ -1,0 +1,30 @@
+# Secrets and local editor
+.cursor/
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+
+# Dependencies
+node_modules/
+
+# Build / scratch
+_zipbuild/
+_zipcheck/
+*.zip
+
+# Scraped live HTML dumps
+_mug-product.html
+_product.html
+_shop.html
+
+# Playwright / local screenshots
+*.png
+playwright-report/
+test-results/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store

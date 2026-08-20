@@ -1,0 +1,1753 @@
+/* ==========================================================================
+   J&P Bali — UI fixes v23.7 (Aug 2026)
+   Load AFTER header-custom.css and Elementor. Overrides broken rules in
+   Appearance → Customize → Additional CSS (payment ::after hack, gray-on-black).
+   ========================================================================== */
+
+:root {
+  --jnp-text-on-dark: #E8E8E8;
+  --jnp-text-muted-on-dark: #D0D0D0;
+  --jnp-text-caption-on-dark: #CFCFCF;
+}
+
+/* Fixed header clearance — theme/Additional CSS was zeroing padding-top */
+body {
+  padding-top: var(--jnp-header-h, 88px) !important;
+  background-color: #050505;
+  overflow-x: hidden;
+}
+
+/* --- 1. Readable text on dark backgrounds (site-wide) ------------------- */
+body,
+.elementor-kit,
+.elementor-widget-text-editor,
+.elementor-widget-theme-post-content {
+  color: var(--jnp-text-on-dark) !important;
+}
+
+.elementor-widget-text-editor p,
+.elementor-widget-text-editor li,
+.elementor-widget-theme-post-content p,
+.elementor-widget-theme-post-content li,
+.elementor-widget-text-editor td,
+.elementor-widget-theme-post-content td {
+  color: var(--jnp-text-on-dark) !important;
+  text-align: left !important;
+  text-justify: auto !important;
+  hyphens: none !important;
+  line-height: 1.7 !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.elementor-heading-title {
+  color: #FFFFFF !important;
+}
+
+/* Brand gold — section titles + product names (not checkout form headings) */
+body:not(.woocommerce-checkout):not(.woocommerce-cart) h2.elementor-heading-title,
+body:not(.woocommerce-checkout):not(.woocommerce-cart) h1.product_title,
+body:not(.woocommerce-checkout):not(.woocommerce-cart) .woocommerce-products-header__title,
+body:not(.woocommerce-checkout):not(.woocommerce-cart) .woocommerce-loop-product__title,
+body.single-product h1,
+body.archive h1,
+body.page-id-shop h1 {
+  color: #D4AF37 !important;
+}
+
+/* Footer + pre-footer contact block */
+.elementor-2098 .elementor-icon-list-text,
+footer.c-footer .elementor-icon-list-text {
+  color: var(--jnp-text-on-dark) !important;
+  line-height: 1.55 !important;
+  white-space: normal !important;
+}
+
+.elementor-2098 .elementor-element-a58694c .elementor-heading-title,
+.elementor-2098 .elementor-element-dd30e96 .elementor-heading-title,
+footer.c-footer .elementor-element-dd30e96 .elementor-heading-title {
+  color: var(--jnp-text-caption-on-dark) !important;
+}
+
+/* --- 2. Footer hours + payment — stack vertically, no overlap ----------- */
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-items,
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-items.elementor-inline-items {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  flex-wrap: nowrap !important;
+  gap: 10px !important;
+  margin: 0 !important;
+}
+
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-item,
+.elementor-2098 .elementor-element-77c593f .elementor-inline-item {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-item::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Payment line — normal text flow (no height:0 / ::before hack).
+   The old hack collapsed layout to 0px while painting ~3 lines via ::before,
+   which overlapped the Email block on mobile. */
+.jnp-payment-note {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.jnp-payment-note .elementor-icon-list-text {
+  color: var(--jnp-text-on-dark) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+  white-space: normal !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+.jnp-payment-note .elementor-icon-list-text::before,
+.jnp-payment-note .elementor-icon-list-text::after {
+  content: none !important;
+  display: none !important;
+}
+
+footer.c-footer .jnp-payment-note,
+.elementor-2098 .jnp-payment-note {
+  margin-bottom: 0 !important;
+}
+
+/* Footer list items — breathing room (extends FIX 6) */
+footer.c-footer .elementor-icon-list-item,
+footer.c-footer .elementor-icon-list-items > li {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  align-items: flex-start !important;
+  margin-bottom: 12px !important;
+}
+
+footer.c-footer .elementor-icon-list-text {
+  display: block !important;
+  overflow: visible !important;
+}
+
+footer.c-footer .elementor-widget-container {
+  overflow: visible !important;
+}
+
+/* Label / value pairs — compact spacing in section 9 */
+
+/* Payment method icons */
+.jnp-payment-icons-row i {
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+.jnp-payment-icons-row i:hover {
+  color: #D4AF37 !important;
+}
+
+/* --- 3. Checkboxes & form controls on dark UI --------------------------- */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #D4AF37;
+}
+
+input[type="checkbox"]:checked::after,
+input[type="radio"]:checked::after {
+  color: #050505 !important;
+}
+
+.wpcf7-list-item-label,
+.wpcf7-form-control-wrap label,
+.wpcf7-form label,
+.comment-form label,
+.woocommerce-form__label,
+.woocommerce-privacy-policy-text,
+.cookieadmin_cookie_modal p,
+.cookieadmin_cookie_modal label,
+.cookieadmin_cookie_modal span,
+.cookieadmin_remark {
+  color: var(--jnp-text-on-dark) !important;
+}
+
+/* WooCommerce / CF7 checkboxes visible on black */
+.wpcf7-list-item input[type="checkbox"],
+.woocommerce-form__input-checkbox,
+.comment-form input[type="checkbox"],
+#reviews input[type="checkbox"] {
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  background: #141414 !important;
+}
+
+.wpcf7-list-item input[type="checkbox"]:checked,
+.woocommerce-form__input-checkbox:checked,
+.comment-form input[type="checkbox"]:checked {
+  background: #D4AF37 !important;
+  border-color: #D4AF37 !important;
+}
+
+/* --- 4. Centered step cards — keep caption under icon, not justified ---- */
+div[style*="text-align:center"] p,
+div[style*="text-align: center"] p,
+.jnp-svc-step p,
+.jnp-svc-stepdesc,
+.elementor-element-6d3e5c5 + * p {
+  text-align: center !important;
+}
+
+/* How-it-works step descriptions on homepage */
+.elementor-widget-icon-box .elementor-icon-box-description,
+.elementor-widget-icon-box .elementor-icon-box-description p {
+  text-align: center !important;
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+/* --- 5. Product colour swatch labels on dark product page --------------- */
+.jnp-color-swatch__label {
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+.jnp-color-swatch__dot::after {
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+.jnp-color-swatch__dot:hover::after,
+.jnp-color-swatch__dot.is-selected::after {
+  color: #FFFFFF !important;
+}
+
+/* --- 6. Desktop product page layout (≥1190px only) -----------------------
+   Reverses Additional-CSS FIX 11/12 stacking on large screens only.
+   Mobile + tablet (≤1189px) are untouched. */
+@media (min-width: 1190px) {
+  /* Clear fixed header (88px) + breathing room */
+  body.single-product .c-product__section {
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 104px 32px 0;
+  }
+
+  body.single-product .c-product__wrap--layout-3 {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: 32px;
+    align-items: start;
+  }
+
+  body.single-product .c-product__col-1,
+  body.single-product .c-product__col-2 {
+    width: auto !important;
+    max-width: none !important;
+    float: none !important;
+    align-self: start !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  body.single-product .c-product__col-1 {
+    min-width: 0;
+  }
+
+  body.single-product .c-product__col-2 {
+    position: sticky;
+    top: 108px;
+  }
+
+  body.single-product .c-product__gallery {
+    background: linear-gradient(180deg, #101010 0%, #080808 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 20px 22px 18px;
+    overflow: visible;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* Theme uses padding-bottom ~944px + absolute img — creates empty void */
+  body.single-product .c-product__slider.c-product__slider--carousel-wide,
+  body.single-product .c-product__slider.owl-carousel {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  body.single-product .c-product__slider .owl-stage-outer,
+  body.single-product .c-product__slider .owl-stage,
+  body.single-product .c-product__slider .owl-item,
+  body.single-product .c-product__slider-item,
+  body.single-product .c-product__slider .woocommerce-product-gallery__image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  body.single-product .c-product__slider .owl-stage-outer.owl-height,
+  body.single-product .c-product__slider .owl-height {
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  body.single-product .c-product__slider .c-product__image-link {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    line-height: 0;
+  }
+
+  body.single-product .c-product__slider .owl-item,
+  body.single-product .c-product__slider .woocommerce-product-gallery__image {
+    text-align: center !important;
+  }
+
+  body.single-product .c-product__slider .owl-item img,
+  body.single-product .c-product__slider-img,
+  body.single-product .c-product__slider-img--cover {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 480px !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    display: block !important;
+  }
+
+  body.single-product .c-product__summary {
+    display: block !important;
+    background: #0a0a0a;
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 18px;
+    padding: 28px 32px 32px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  body.single-product .c-product__summary::after,
+  body.single-product .c-product__summary::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  body.single-product .c-product__col-inner-1,
+  body.single-product .c-product__col-inner-2 {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.single-product .c-product__col-inner-2 {
+    margin-top: 22px !important;
+  }
+
+  body.single-product .c-breadcrumbs__list {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  body.single-product .c-breadcrumbs__item,
+  body.single-product .c-breadcrumbs__item a {
+    color: #9a9a9a !important;
+  }
+
+  body.single-product .c-breadcrumbs__item:last-child {
+    color: #d4af37 !important;
+  }
+
+  body.single-product .c-product__title {
+    font-size: clamp(2rem, 2.5vw, 2.85rem) !important;
+    line-height: 1.12 !important;
+    margin: 0 0 10px !important;
+  }
+
+  body.single-product .c-product__summary .price {
+    font-size: 1.85rem !important;
+    color: #d4af37 !important;
+    margin: 0 0 14px !important;
+  }
+
+  body.single-product .c-product__short-description {
+    font-size: 1.05rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  body.single-product .c-product__summary .variations .label label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #b8b8b8 !important;
+  }
+
+  body.single-product .c-product__summary .variations select {
+    width: 100%;
+    max-width: 100%;
+    min-height: 46px;
+    background: #141414 !important;
+    color: #ededed !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: 8px !important;
+  }
+
+  body.single-product .c-product__atc-row-1 .single_add_to_cart_button {
+    min-height: 52px;
+    font-size: 14px !important;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border-radius: 999px !important;
+  }
+
+  body.single-product .c-product__wishlist-button {
+    margin-top: 12px;
+  }
+
+  body.single-product .product_meta {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 13px;
+    color: #a8a8a8 !important;
+  }
+
+  body.single-product .c-product__tabs-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: 36px;
+    margin-top: 28px;
+    align-items: start;
+  }
+
+  body.single-product .c-product__tabs-col-1,
+  body.single-product .c-product__tabs-col-2 {
+    width: auto !important;
+    max-width: none !important;
+    float: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.single-product .c-product__tabs-col-2 {
+    margin-top: 0 !important;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 24px 28px !important;
+  }
+
+  body.single-product .c-product__tabs-header {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff !important;
+    margin: 26px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  }
+
+  body.single-product .c-product__tabs-col-1 .c-product__tabs-header:first-child {
+    margin-top: 0;
+  }
+
+  body.single-product .c-product__tabs-col-2 .woocommerce-Reviews-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.2rem;
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    color: #fff !important;
+  }
+
+  body.single-product .c-product__tabs-panel {
+    padding-right: 8px;
+  }
+
+  body.single-product .c-product__after-summary {
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  body.single-product .c-product__products-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.35rem;
+    margin-bottom: 18px;
+  }
+}
+
+/* --- 7. Account access / affiliate registration (/account-access/) ---------
+   YITH .register-form ships with #f3f3f3 bg + 80px side padding while
+   Additional CSS sets white labels → unreadable. Theme .c-login also gets
+   huge horizontal margins on desktop. Verified in browser Aug 2026. */
+body.page-id-3076 .register-form {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+body.page-id-3076 .register-form label,
+body.page-id-3076 .yith-wcaf-registration-form label {
+  color: #ffffff !important;
+}
+
+body.page-id-3076 .register-form p,
+body.page-id-3076 .register-form .description,
+body.page-id-3076 .yith-wcaf-registration-form .woocommerce-privacy-policy-text {
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+body.page-id-3076 .register-form h2 {
+  color: #ffffff !important;
+}
+
+body.page-id-3076 .woocommerce {
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+body.page-id-3076 .c-login,
+body.page-id-3076 .yith-wcaf-registration-form {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 560px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+body.page-id-3076 .yith-wcaf-registration-form {
+  padding: 32px 24px !important;
+}
+
+@media (max-width: 767px) {
+  body.page-id-3076 .elementor-element-aaforms {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  body.page-id-3076 .elementor-element-aaforms .e-con-inner,
+  body.page-id-3076 .elementor-element-aacustcol .e-con-inner,
+  body.page-id-3076 .elementor-element-aaaffcol .e-con-inner {
+    padding: 24px 12px 48px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  body.page-id-3076 .elementor-element-aacustform,
+  body.page-id-3076 .elementor-element-aaaffform,
+  body.page-id-3076 .forms-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.page-id-3076 .woocommerce {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.page-id-3076 .c-login,
+  body.page-id-3076 .yith-wcaf-registration-form {
+    max-width: 100% !important;
+    padding: 24px 16px !important;
+  }
+}
+
+/* --- 8. Mobile product page — attributes, cart slot, menu stacking ---------
+   Verified live Aug 2026:
+   - .shop_attributes th uses rgb(7,7,7) on #0a0a0a → labels invisible
+   - .jnp-cart-slot loses [hidden] after WC fragment refresh → white cart icon
+     floats bottom-left above sticky Add-to-cart bar
+   - .jnp-mobile-menu (z-index 998) sits under #jnp-float-cart (999998) and
+     sticky ATC (9995), covering Login/Cart links when hamburger opens */
+
+/* Additional information — readable labels on dark product tabs */
+body.single-product .shop_attributes,
+body.single-product .shop_attributes tbody,
+body.single-product .shop_attributes tr {
+  display: table !important;
+  width: 100% !important;
+  table-layout: fixed;
+}
+
+body.single-product .shop_attributes th,
+body.single-product .woocommerce-product-attributes-item__label {
+  display: table-cell !important;
+  width: 38% !important;
+  color: #d4af37 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-align: left !important;
+  vertical-align: top;
+  padding: 10px 16px 10px 0 !important;
+}
+
+body.single-product .shop_attributes td,
+body.single-product .woocommerce-product-attributes-item__value {
+  display: table-cell !important;
+  color: var(--jnp-text-on-dark) !important;
+  font-size: 14px !important;
+  text-align: left !important;
+  vertical-align: top;
+  padding: 10px 0 !important;
+}
+
+body.single-product .shop_attributes tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.single-product .shop_attributes tr:last-child {
+  border-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  body.single-product .c-product__tabs-col-1,
+  body.single-product .c-product__tabs-col-2,
+  body.single-product .c-product__tabs-panel {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  body.single-product .c-product__tabs-header {
+    text-align: left !important;
+  }
+}
+
+/* Cart icon template — always hidden (JS clones into header/menu) */
+.jnp-cart-slot {
+  display: none !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+/* Mobile nav must sit above floating cart + sticky product CTA */
+@media (max-width: 1024px) {
+  body.jnp-menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000000;
+    pointer-events: auto;
+  }
+
+  .jnp-mobile-menu.is-open {
+    z-index: 1000002 !important;
+  }
+
+  body.jnp-menu-open .jnp-header {
+    z-index: 1000003 !important;
+  }
+
+  body.jnp-menu-open #jnp-float-cart,
+  body.jnp-menu-open #jnp-float-cart-toast,
+  body.jnp-menu-open .jnp-wa,
+  body.jnp-menu-open .c-product__atc-row-1--sticky,
+  body.jnp-menu-open .c-product__atc-wrap--sticky,
+  body.jnp-menu-open .trp-floating-switcher,
+  body.jnp-menu-open button.cookieadmin_re_consent {
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+
+  body.jnp-menu-open .jnp-mobile-menu__list {
+    padding-bottom: 32px;
+  }
+}
+
+/* --- 9. Footer / pre-footer contact — compact spacing (all breakpoints) ----
+   Root cause: jnp-footer-gap-fix sets .elementor-2098 .e-con { gap: 24px }
+   which beats weaker label/value rules. Each widget also carries ~24px
+   margin-bottom, so "Email:" and its value sit ~48px apart on mobile. */
+
+/* Beat jnp-footer-gap-fix (.elementor-2098 .e-con) with ID-level selectors */
+.elementor-2098 .e-con.elementor-element-c0db110,
+.elementor-2098 .e-con.elementor-element-da3d79a,
+.elementor-2098 .e-con.elementor-element-169f691 {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 2px !important;
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .e-con.elementor-element-b53688b {
+  gap: 14px !important;
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .e-con.e-con-full.elementor-element-b53688b > .elementor-element.elementor-widget:not(:last-child) {
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .e-con.e-con-full.elementor-element-bc4fb25 > .elementor-element.elementor-widget:not(:last-child) {
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .e-con.e-con-full.elementor-element-97b044b > .elementor-element.elementor-widget:not(:last-child) {
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .e-con.elementor-element-bc4fb25 {
+  gap: 14px !important;
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .e-con.elementor-element-c0db110 > .elementor-widget,
+.elementor-2098 .e-con.elementor-element-da3d79a > .elementor-widget,
+.elementor-2098 .e-con.elementor-element-169f691 > .elementor-widget,
+.elementor-2098 .e-con.e-con-full.elementor-element-c0db110 > .elementor-element.elementor-widget,
+.elementor-2098 .e-con.e-con-full.elementor-element-da3d79a > .elementor-element.elementor-widget,
+.elementor-2098 .e-con.e-con-full.elementor-element-169f691 > .elementor-element.elementor-widget {
+  margin-bottom: 0 !important;
+  margin-right: 0 !important;
+}
+
+.elementor-2098 .elementor-element-c0db110 .elementor-icon-list-item,
+.elementor-2098 .elementor-element-da3d79a .elementor-icon-list-item,
+.elementor-2098 .elementor-element-169f691 .elementor-icon-list-item,
+footer.c-footer .elementor-element-c0db110 .elementor-icon-list-item,
+footer.c-footer .elementor-element-da3d79a .elementor-icon-list-item,
+footer.c-footer .elementor-element-169f691 .elementor-icon-list-item {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.elementor-2098 .elementor-element-77c593f {
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-item {
+  margin-bottom: 8px !important;
+}
+
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-item:last-child,
+.elementor-2098 .elementor-element-77c593f .jnp-payment-note {
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-items {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+}
+
+.elementor-2098 .elementor-element-b53688b {
+  margin-top: 4px !important;
+}
+
+.elementor-2098 .elementor-element-8ec8d7d {
+  margin-bottom: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  --container-widget-width: 100%;
+}
+
+.elementor-2098 .elementor-element-8ec8d7d .elementor-widget-container,
+.elementor-2098 .elementor-element-8ec8d7d .elementor-heading-title {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+.elementor-2098 .elementor-element-8ec8d7d .elementor-heading-title {
+  font-size: clamp(1rem, 2.6vw, 1.2rem) !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+}
+
+.elementor-2098 .e-con.elementor-element-bc4fb25,
+.elementor-2098 .elementor-element-77c593f,
+.elementor-2098 .e-con.elementor-element-b53688b,
+.elementor-2098 .e-con.elementor-element-da3d79a,
+.elementor-2098 .e-con.elementor-element-169f691 {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  min-width: 0 !important;
+}
+
+.elementor-2098 .elementor-element-b5aac1c,
+.elementor-2098 .elementor-element-4af58de,
+.elementor-2098 .elementor-element-9d746ab,
+.elementor-2098 .elementor-element-e24886e,
+.elementor-2098 .elementor-element-fce776e {
+  width: auto !important;
+  max-width: 100% !important;
+  min-width: min-content !important;
+}
+
+.elementor-2098 .elementor-element-b5aac1c .elementor-icon-list-text,
+.elementor-2098 .elementor-element-4af58de .elementor-icon-list-text,
+.elementor-2098 .elementor-element-9d746ab .elementor-icon-list-text {
+  color: #d4af37 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+}
+
+.elementor-2098 .elementor-element-2aef020 a,
+.elementor-2098 .elementor-element-2aef020 .elementor-icon-list-text,
+.elementor-2098 .elementor-element-e24886e a,
+.elementor-2098 .elementor-element-e24886e .elementor-icon-list-text,
+.elementor-2098 .elementor-element-fce776e .elementor-icon-list-text {
+  color: var(--jnp-text-on-dark) !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.elementor-2098 .elementor-element-42b1e88 {
+  gap: 8px !important;
+  align-items: center !important;
+  text-align: center;
+}
+
+.elementor-2098 .elementor-element-5ff1f41 {
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .elementor-element-5ff1f41 .elementor-heading-title {
+  font-size: clamp(1.35rem, 4vw, 1.75rem) !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+}
+
+.elementor-2098 .elementor-element-9e06030 {
+  margin-bottom: 0 !important;
+}
+
+.elementor-2098 .elementor-element-a58694c {
+  margin-top: 0 !important;
+}
+
+.elementor-2098 .elementor-element-a58694c .elementor-heading-title {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+.elementor-2098 .elementor-element-4dd9e5d .elementor-icon-list-item {
+  margin-bottom: 8px !important;
+}
+
+.elementor-2098 .elementor-element-4dd9e5d .elementor-icon-list-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* --- 9b. Footer width — full-bleed shell, no squeezed/overlapping columns
+   Live theme boxes footer.c-footer at max-width:1440px (white gutters on
+   a white body). Black paint lives only on .elementor-element-97b044b
+   which was also max-width:1240px. Elementor children keep --width /
+   padding-right 30–50px so tracks collapse and text overlaps.
+   ------------------------------------------------------------------------ */
+
+footer.l-section.c-footer,
+footer.c-footer {
+  max-width: none !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  background-color: #050505 !important;
+}
+
+.elementor-2098 {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  background-color: #050505 !important;
+  box-sizing: border-box !important;
+}
+
+.elementor-2098 .e-con.elementor-element-97b044b,
+.elementor-2098 .e-con.elementor-element-5c9433d {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  background-color: #050505 !important;
+  --width: 100%;
+  --content-width: 100%;
+  --container-max-width: 100%;
+  --flex-wrap: nowrap;
+  overflow: visible !important;
+}
+
+/* Inner content tracks header width, background stays edge-to-edge */
+.elementor-2098 .e-con.elementor-element-97b044b {
+  gap: 24px !important;
+  padding-top: 28px !important;
+  padding-bottom: 24px !important;
+  padding-inline: max(40px, calc((100% - 1400px) / 2)) !important;
+}
+
+.elementor-2098 .e-con.elementor-element-5c9433d {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding-top: 18px !important;
+  padding-bottom: 22px !important;
+  padding-inline: max(40px, calc((100% - 1400px) / 2)) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.elementor-2098 .e-con.elementor-element-5c9433d .elementor-widget,
+.elementor-2098 .elementor-element-dd30e96 {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  text-align: center;
+}
+
+/* Kill Elementor column widths / side padding that steal track space */
+.elementor-2098 .e-con.elementor-element-97b044b > .e-con {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  flex: none !important;
+  --width: 100%;
+  --flex-grow: 1;
+  --flex-shrink: 1;
+  --flex-basis: 0%;
+  --padding-inline-end: 0px;
+  --padding-inline-start: 0px;
+  --padding-right: 0px;
+  --padding-left: 0px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+.elementor-2098 .e-con.elementor-element-97b044b .elementor-widget-container,
+.elementor-2098 .e-con.elementor-element-97b044b .elementor-icon-list-items,
+.elementor-2098 .e-con.elementor-element-97b044b .elementor-heading-title {
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+.elementor-2098 .e-con.elementor-element-97b044b .elementor-icon-list-items.elementor-inline-items {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  width: 100% !important;
+}
+
+/* Mobile — single column, full width, no payment/email overlap */
+@media (max-width: 767px) {
+  .elementor-2098 .e-con.elementor-element-97b044b {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    padding-top: 24px !important;
+    padding-bottom: 20px !important;
+    padding-inline: 16px !important;
+    --e-con-grid-template-columns: minmax(0, 1fr);
+  }
+
+  .elementor-2098 .e-con.elementor-element-97b044b > .e-con {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+  }
+
+  .elementor-2098 .e-con.elementor-element-bc4fb25 {
+    gap: 16px !important;
+    padding-right: 0 !important;
+  }
+
+  .elementor-2098 .elementor-element-77c593f .elementor-icon-list-text,
+  .elementor-2098 .jnp-payment-note .elementor-icon-list-text {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+
+  .elementor-2098 .e-con.elementor-element-b53688b {
+    margin-top: 8px !important;
+    gap: 16px !important;
+  }
+
+  .elementor-2098 .e-con.elementor-element-42b1e88 {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .elementor-2098 .elementor-element-5ff1f41 .elementor-heading-title,
+  .elementor-2098 .elementor-element-9e06030 .elementor-heading-title,
+  .elementor-2098 .elementor-element-a58694c .elementor-heading-title {
+    text-align: left !important;
+  }
+
+  .elementor-2098 .e-con.elementor-element-5c9433d {
+    padding-bottom: 96px !important;
+    padding-inline: 16px !important;
+  }
+}
+
+/* Tablet — two columns, links row full width underneath (no 3-col squeeze) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .elementor-2098 .e-con.elementor-element-97b044b {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    align-items: start !important;
+    gap: 28px 40px !important;
+    padding-top: 36px !important;
+    padding-bottom: 28px !important;
+    padding-inline: 24px !important;
+    --e-con-grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .elementor-2098 .e-con.elementor-element-bc4fb25 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .elementor-2098 .e-con.elementor-element-42b1e88 {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .elementor-2098 .e-con.elementor-element-81f7b20 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+
+  .elementor-2098 .e-con.elementor-element-5c9433d {
+    padding-bottom: 88px !important;
+    padding-inline: 24px !important;
+  }
+}
+
+/* Desktop — three equal-min tracks that can shrink without overlapping */
+@media (min-width: 1025px) {
+  .elementor-2098 .e-con.elementor-element-97b044b {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.9fr) !important;
+    grid-template-rows: auto !important;
+    align-items: start !important;
+    gap: 40px 48px !important;
+    padding-top: 48px !important;
+    padding-bottom: 36px !important;
+    padding-inline: max(40px, calc((100% - 1400px) / 2)) !important;
+    --e-con-grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.9fr);
+  }
+
+  .elementor-2098 .e-con.elementor-element-bc4fb25,
+  .elementor-2098 .e-con.elementor-element-42b1e88,
+  .elementor-2098 .e-con.elementor-element-81f7b20 {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .elementor-2098 .e-con.elementor-element-81f7b20 {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .elementor-2098 .elementor-element-4dd9e5d .elementor-icon-list-item {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 4px !important;
+  }
+}
+
+/* --- 10. Checkout + float cart — readable text on light panels ----------
+   Section 1/3 force light text site-wide; checkout/cart forms use white
+   backgrounds → labels and headings become invisible. Float cart mini-cart
+   also injects duplicate theme subtotal/buttons with dark-on-dark styling.
+   ------------------------------------------------------------------------ */
+
+body.woocommerce-checkout .woocommerce,
+body.woocommerce-cart .woocommerce {
+  color: #1a1a1a !important;
+}
+
+body.woocommerce-checkout form.checkout label,
+body.woocommerce-checkout form.checkout .woocommerce-form__label,
+body.woocommerce-checkout form.checkout h3,
+body.woocommerce-checkout #jnp-delivery-fields label,
+body.woocommerce-checkout #jnp-delivery-fields p,
+body.woocommerce-checkout #jnp-delivery-fields h3,
+body.woocommerce-checkout .jnp-ch-intro,
+body.woocommerce-checkout .jnp-ch-note,
+body.woocommerce-checkout .woocommerce-billing-fields h3,
+body.woocommerce-checkout .woocommerce-additional-fields h3,
+body.woocommerce-checkout .form-row label,
+body.woocommerce-checkout #order_review label,
+body.woocommerce-checkout .shop_table th,
+body.woocommerce-checkout .shop_table td,
+body.woocommerce-checkout .woocommerce-privacy-policy-text,
+body.woocommerce-checkout #payment .payment_box p,
+body.woocommerce-checkout .woocommerce-terms-and-conditions-wrapper label,
+body.woocommerce-cart .woocommerce label,
+body.woocommerce-cart .woocommerce h3 {
+  color: #1a1a1a !important;
+}
+
+body.woocommerce-checkout form.checkout h3,
+body.woocommerce-checkout .woocommerce-billing-fields h3,
+body.woocommerce-checkout .woocommerce-additional-fields h3 {
+  color: #0a0a0a !important;
+}
+
+body.woocommerce-checkout #jnp-delivery-fields p,
+body.woocommerce-checkout .jnp-ch-intro,
+body.woocommerce-checkout .jnp-ch-note,
+body.woocommerce-checkout .form-row .description,
+body.woocommerce-checkout #payment .payment_box,
+body.woocommerce-checkout .woocommerce-privacy-policy-text {
+  color: #444444 !important;
+}
+
+/* Float cart — one footer only (.jnp-float-cart__foot) */
+#jnp-float-cart .jnp-float-cart__body .woocommerce-mini-cart__total,
+#jnp-float-cart .jnp-float-cart__body .woocommerce-mini-cart__buttons,
+#jnp-float-cart .jnp-float-cart__body .c-product-list-widget__total,
+#jnp-float-cart .jnp-float-cart__body .c-product-list-widget__buttons {
+  display: none !important;
+}
+
+#jnp-float-cart .jnp-float-cart__body .woocommerce-mini-cart-item a,
+#jnp-float-cart .jnp-float-cart__body .c-product-list-widget__title-link {
+  color: #ffffff !important;
+}
+
+#jnp-float-cart .jnp-float-cart__body .quantity,
+#jnp-float-cart .jnp-float-cart__body .woocommerce-Price-amount {
+  color: #d4af37 !important;
+}
+
+#jnp-float-cart .variation dt,
+#jnp-float-cart .variation dd,
+#jnp-float-cart .variation dd p {
+  color: #b0b0b0 !important;
+}
+
+/* --- 11. Mobile purchase QA (v23) — WA/FAB, form, checkout, catalog ----- */
+
+@media (max-width: 1024px) {
+  .jnp-mobile-menu,
+  .jnp-mobile-menu.is-open {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #0b0b0b !important;
+  }
+
+  body.single-product form.variations_form,
+  body.single-product .variations,
+  body.single-product .variations select {
+    max-width: calc(100% - 72px) !important;
+  }
+
+  a.jnp-wa {
+    right: 14px !important;
+    bottom: 92px !important;
+    z-index: 9990 !important;
+  }
+}
+
+body.single-product .stock,
+body.single-product p.stock,
+body.single-product .availability {
+  display: none !important;
+}
+
+body.single-product .posted_in a[href*="photo-upload"],
+body.single-product .tagged_as a[href*="photo-merch"],
+body.single-product a[rel="tag"][href*="photo-merch"] {
+  display: none !important;
+}
+
+body.single-product .c-product__quantity-minus,
+body.single-product .c-product__quantity-plus,
+body.single-product .js-quantity-minus,
+body.single-product .js-quantity-plus {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  width: 44px !important;
+}
+
+body.single-product .qty,
+body.single-product input.qty,
+body.single-product .c-product__quantity-value {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+  font-weight: 600 !important;
+}
+
+body.woocommerce-checkout #jnp_hotel_name_field,
+body.woocommerce-checkout .form-row#jnp_hotel_name_field,
+body.woocommerce-checkout label[for="jnp_hotel_name"] {
+  display: none !important;
+}
+
+body.single-product table.variations tr:has(input[type="hidden"][name*="design-style"]) {
+  display: none !important;
+}
+
+body.single-product table.variations:not(:has(select)):not(:has(.variable-item)) {
+  display: none !important;
+}
+
+.jnp-contact-form {
+  max-width: 640px;
+  margin: 28px auto 48px;
+  padding: 24px 20px 8px;
+}
+
+.jnp-contact-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #D4AF37;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.jnp-contact-form input[type="text"],
+.jnp-contact-form input[type="email"],
+.jnp-contact-form textarea {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: #111;
+  color: #E8E8E8;
+  box-sizing: border-box;
+}
+
+.jnp-contact-form__btn {
+  background: #D4AF37;
+  color: #111;
+  border: 0;
+  padding: 12px 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.jnp-contact-form__ok { color: #8f8; }
+.jnp-contact-form__err { color: #f88; }
+.jnp-contact-form__hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+
+/* International size guide on clothing products */
+.jnp-size-guide {
+  margin: 16px 0 8px;
+  padding: 12px 14px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--jnp-text-on-dark, #E8E8E8);
+}
+
+.jnp-size-guide summary {
+  cursor: pointer;
+  color: #D4AF37;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  list-style: none;
+}
+
+.jnp-size-guide summary::-webkit-details-marker {
+  display: none;
+}
+
+.jnp-size-guide__note {
+  margin: 10px 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--jnp-text-muted-on-dark, #D0D0D0);
+}
+
+.jnp-size-guide__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.jnp-size-guide__table th,
+.jnp-size-guide__table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--jnp-text-on-dark, #E8E8E8) !important;
+}
+
+.jnp-size-guide__table thead th {
+  color: #D4AF37 !important;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.jnp-size-guide__table tbody th {
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+/* --- 12. Homepage layout — padding, position, breakpoints (v23.5) ---------
+   Measured live Aug 2026 at 1440 / 768 / 390:
+   - Hero min-height 620px on all viewports → large empty gap under CTA
+   - Hero column flex without align-items:center → 410px CTA + 580px body
+     sit left while the heading is text-align:center
+   - Heading line-height === font-size (50/50, 30/30, 17/17) → cramped type
+   - svc03row four 155px columns on tablet → titles wrap into unreadable stacks
+   - Footer padding-inline 16px 72px / 28px 72px → content shoved left
+   ------------------------------------------------------------------------ */
+
+body.home,
+body.front-page {
+  background-color: #050505 !important;
+}
+
+body.home .elementor-heading-title,
+body.front-page .elementor-heading-title {
+  line-height: 1.2 !important;
+}
+
+/* Hero */
+body.home .elementor-element-hero01c,
+body.front-page .elementor-element-hero01c {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-height: 0 !important;
+  padding: 28px 24px 48px !important;
+  box-sizing: border-box !important;
+}
+
+body.home .elementor-element-hero01c > .e-con-inner,
+body.front-page .elementor-element-hero01c > .e-con-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 1170px !important;
+  padding-top: 0 !important;
+  padding-bottom: 8px !important;
+  box-sizing: border-box !important;
+}
+
+body.home .elementor-element-hero02h,
+body.home .elementor-element-hero03t,
+body.home .elementor-element-hero03b,
+body.home .elementor-element-hero04b,
+body.front-page .elementor-element-hero02h,
+body.front-page .elementor-element-hero03t,
+body.front-page .elementor-element-hero03b,
+body.front-page .elementor-element-hero04b {
+  width: 100% !important;
+  max-width: 920px !important;
+  align-self: center !important;
+  --width: 100%;
+  text-align: center !important;
+}
+
+body.home .elementor-element-hero02h .elementor-heading-title,
+body.front-page .elementor-element-hero02h .elementor-heading-title {
+  font-size: clamp(1.875rem, 4.6vw, 3.125rem) !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+  margin: 0 0 16px !important;
+}
+
+body.home .elementor-element-hero03t .elementor-heading-title,
+body.front-page .elementor-element-hero03t .elementor-heading-title {
+  text-align: center !important;
+  line-height: 1.4 !important;
+  margin: 0 0 16px !important;
+}
+
+body.home .elementor-element-hero03b,
+body.home .elementor-element-hero03b p,
+body.front-page .elementor-element-hero03b,
+body.front-page .elementor-element-hero03b p {
+  max-width: 640px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+body.home .elementor-element-hero04b .elementor-widget-container > div,
+body.front-page .elementor-element-hero04b .elementor-widget-container > div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 12px 16px !important;
+  width: 100% !important;
+  margin-top: 24px !important;
+}
+
+@media (min-width: 1025px) {
+  body.home .elementor-element-hero01c,
+  body.front-page .elementor-element-hero01c {
+    min-height: min(560px, calc(100svh - var(--jnp-header-h, 88px))) !important;
+    padding: 40px 24px 48px !important;
+  }
+}
+
+/* How It Works — 5 steps */
+body.home .elementor-element-hiw01c,
+body.front-page .elementor-element-hiw01c,
+body.home .elementor-element-who01c,
+body.front-page .elementor-element-who01c,
+body.home .elementor-element-svc01c,
+body.front-page .elementor-element-svc01c,
+body.home .elementor-element-cta01c,
+body.front-page .elementor-element-cta01c {
+  padding-top: 64px !important;
+  padding-bottom: 64px !important;
+  box-sizing: border-box !important;
+}
+
+body.home .elementor-element-hiw02h,
+body.front-page .elementor-element-hiw02h {
+  width: 100% !important;
+  text-align: center !important;
+}
+
+body.home .elementor-element-hiw02h .elementor-heading-title,
+body.front-page .elementor-element-hiw02h .elementor-heading-title,
+body.home .elementor-element-svc02h .elementor-heading-title,
+body.front-page .elementor-element-svc02h .elementor-heading-title {
+  text-align: center !important;
+  margin: 0 auto 28px !important;
+}
+
+/* 5 equal columns on desktop. Do not use auto-fit (orphans step 5).
+   No child combinators — WP Additional CSS kses encodes ">" . */
+body.home .e-con.elementor-element-hiw03row,
+body.front-page .e-con.elementor-element-hiw03row {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 20px 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  position: relative !important;
+  align-items: start !important;
+  overflow: visible !important;
+}
+
+body.home .e-con.elementor-element-hiw03row .e-con-inner,
+body.front-page .e-con.elementor-element-hiw03row .e-con-inner {
+  display: contents !important;
+}
+
+/* Vertical SVG accent was built for a stacked layout — hide it. */
+body.home .elementor-element-6d3e5c5,
+body.front-page .elementor-element-6d3e5c5,
+body.home .jnp-hiw-accent,
+body.front-page .jnp-hiw-accent {
+  display: none !important;
+}
+
+body.home .elementor-element-hiw1,
+body.home .elementor-element-hiw2,
+body.home .elementor-element-hiw3,
+body.home .elementor-element-hiw4,
+body.home .elementor-element-5715092,
+body.front-page .elementor-element-hiw1,
+body.front-page .elementor-element-hiw2,
+body.front-page .elementor-element-hiw3,
+body.front-page .elementor-element-hiw4,
+body.front-page .elementor-element-5715092 {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: 8px 4px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 1;
+}
+
+/* More specific than hiw03row .e-con-inner { display:contents } */
+body.home .e-con.elementor-element-hiw03row .e-con.elementor-element-hiw1 .e-con-inner,
+body.home .e-con.elementor-element-hiw03row .e-con.elementor-element-hiw2 .e-con-inner,
+body.home .e-con.elementor-element-hiw03row .e-con.elementor-element-hiw3 .e-con-inner,
+body.home .e-con.elementor-element-hiw03row .e-con.elementor-element-hiw4 .e-con-inner,
+body.home .e-con.elementor-element-hiw03row .e-con.elementor-element-5715092 .e-con-inner,
+body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-hiw1 .e-con-inner,
+body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-hiw2 .e-con-inner,
+body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-hiw3 .e-con-inner,
+body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-hiw4 .e-con-inner,
+body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-5715092 .e-con-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+@media (min-width: 1025px) {
+  body.home .e-con.elementor-element-hiw03row::before,
+  body.front-page .e-con.elementor-element-hiw03row::before {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 30px;
+    height: 0;
+    border-top: 1.5px dashed rgba(212, 175, 55, 0.55);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Who We Are — two columns that can shrink */
+body.home .elementor-element-who01c > .e-con-inner,
+body.front-page .elementor-element-who01c > .e-con-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+  gap: 32px 48px !important;
+  align-items: start !important;
+  padding: 0 !important;
+}
+
+body.home .elementor-element-who02col1,
+body.home .elementor-element-who04col2,
+body.front-page .elementor-element-who02col1,
+body.front-page .elementor-element-who04col2 {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+body.home .elementor-element-svcfeatured,
+body.front-page .elementor-element-svcfeatured {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 28px 24px !important;
+  box-sizing: border-box !important;
+}
+body.home .elementor-element-svc03row > .e-con-inner,
+body.front-page .elementor-element-svc03row > .e-con-inner {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px 24px !important;
+  width: 100% !important;
+}
+
+body.home .elementor-element-svc04c1,
+body.home .elementor-element-svc05c2,
+body.home .elementor-element-svc06c3,
+body.home .elementor-element-svc07c4,
+body.front-page .elementor-element-svc04c1,
+body.front-page .elementor-element-svc05c2,
+body.front-page .elementor-element-svc06c3,
+body.front-page .elementor-element-svc07c4 {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: 16px 12px !important;
+  box-sizing: border-box !important;
+}
+
+body.home .elementor-element-svc04c1 .elementor-heading-title,
+body.home .elementor-element-svc05c2 .elementor-heading-title,
+body.home .elementor-element-svc06c3 .elementor-heading-title,
+body.home .elementor-element-svc07c4 .elementor-heading-title,
+body.front-page .elementor-element-svc04c1 .elementor-heading-title,
+body.front-page .elementor-element-svc05c2 .elementor-heading-title,
+body.front-page .elementor-element-svc06c3 .elementor-heading-title,
+body.front-page .elementor-element-svc07c4 .elementor-heading-title {
+  font-size: clamp(0.95rem, 1.4vw, 1.125rem) !important;
+  line-height: 1.3 !important;
+}
+
+body.home .elementor-element-cta04row,
+body.front-page .elementor-element-cta04row {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.home .elementor-element-cta04row .elementor-widget-container > div,
+body.front-page .elementor-element-cta04row .elementor-widget-container > div {
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 12px 16px !important;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  body.home .elementor-element-hero01c,
+  body.front-page .elementor-element-hero01c,
+  body.home .elementor-element-hiw01c,
+  body.front-page .elementor-element-hiw01c,
+  body.home .elementor-element-who01c,
+  body.front-page .elementor-element-who01c,
+  body.home .elementor-element-svc01c,
+  body.front-page .elementor-element-svc01c,
+  body.home .elementor-element-cta01c,
+  body.front-page .elementor-element-cta01c {
+    padding: 32px 24px !important;
+  }
+
+  body.home .e-con.elementor-element-hiw03row,
+  body.front-page .e-con.elementor-element-hiw03row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px 24px !important;
+  }
+
+  body.home .e-con.elementor-element-hiw03row .e-con.elementor-element-5715092,
+  body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-5715092 {
+    grid-column: 1 / -1;
+    max-width: 50% !important;
+    justify-self: center;
+  }
+
+  body.home .elementor-element-svc03row > .e-con-inner,
+  body.front-page .elementor-element-svc03row > .e-con-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px 24px !important;
+  }
+
+  body.home .elementor-element-who01c > .e-con-inner,
+  body.front-page .elementor-element-who01c > .e-con-inner {
+    gap: 24px 32px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.home .elementor-element-hero01c,
+  body.front-page .elementor-element-hero01c {
+    padding: 20px 16px 32px !important;
+  }
+
+  body.home .elementor-element-hiw01c,
+  body.front-page .elementor-element-hiw01c,
+  body.home .elementor-element-who01c,
+  body.front-page .elementor-element-who01c,
+  body.home .elementor-element-svc01c,
+  body.front-page .elementor-element-svc01c,
+  body.home .elementor-element-cta01c,
+  body.front-page .elementor-element-cta01c {
+    padding: 40px 16px !important;
+  }
+
+  body.home .elementor-element-hero01c > .e-con-inner,
+  body.front-page .elementor-element-hero01c > .e-con-inner {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  body.home .elementor-element-hero04b .elementor-widget-container > div,
+  body.front-page .elementor-element-hero04b .elementor-widget-container > div {
+    margin-top: 16px !important;
+  }
+
+  body.home .e-con.elementor-element-hiw03row,
+  body.front-page .e-con.elementor-element-hiw03row,
+  body.home .elementor-element-svc03row > .e-con-inner,
+  body.front-page .elementor-element-svc03row > .e-con-inner,
+  body.home .elementor-element-who01c > .e-con-inner,
+  body.front-page .elementor-element-who01c > .e-con-inner {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  body.home .e-con.elementor-element-hiw03row .e-con.elementor-element-5715092,
+  body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-5715092 {
+    grid-column: auto;
+    max-width: 100% !important;
+    justify-self: stretch;
+  }
+
+  body.home .elementor-element-hiw1,
+  body.home .elementor-element-hiw2,
+  body.home .elementor-element-hiw3,
+  body.home .elementor-element-hiw4,
+  body.home .elementor-element-5715092,
+  body.front-page .elementor-element-hiw1,
+  body.front-page .elementor-element-hiw2,
+  body.front-page .elementor-element-hiw3,
+  body.front-page .elementor-element-hiw4,
+  body.front-page .elementor-element-5715092,
+  body.home .elementor-element-svc04c1,
+  body.home .elementor-element-svc05c2,
+  body.home .elementor-element-svc06c3,
+  body.home .elementor-element-svc07c4,
+  body.front-page .elementor-element-svc04c1,
+  body.front-page .elementor-element-svc05c2,
+  body.front-page .elementor-element-svc06c3,
+  body.front-page .elementor-element-svc07c4 {
+    padding: 12px 0 !important;
+  }
+}

@@ -1,0 +1,225 @@
+/* ==========================================================================
+   J&P Bali — UI fixes v14 (Aug 2026)
+   Load AFTER header-custom.css and Elementor. Overrides broken rules in
+   Appearance → Customize → Additional CSS (payment ::after hack, gray-on-black).
+   ========================================================================== */
+
+:root {
+  --jnp-text-on-dark: #E8E8E8;
+  --jnp-text-muted-on-dark: #D0D0D0;
+  --jnp-text-caption-on-dark: #CFCFCF;
+}
+
+/* --- 1. Readable text on dark backgrounds (site-wide) ------------------- */
+body,
+.elementor-kit,
+.elementor-widget-text-editor,
+.elementor-widget-theme-post-content {
+  color: var(--jnp-text-on-dark) !important;
+}
+
+.elementor-widget-text-editor p,
+.elementor-widget-text-editor li,
+.elementor-widget-theme-post-content p,
+.elementor-widget-theme-post-content li,
+.elementor-widget-text-editor td,
+.elementor-widget-theme-post-content td {
+  color: var(--jnp-text-on-dark) !important;
+  text-align: left !important;
+  text-justify: auto !important;
+  hyphens: none !important;
+  line-height: 1.7 !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.elementor-heading-title {
+  color: #FFFFFF !important;
+}
+
+/* Footer + pre-footer contact block */
+.elementor-2098 .elementor-icon-list-text,
+footer.c-footer .elementor-icon-list-text {
+  color: var(--jnp-text-on-dark) !important;
+  line-height: 1.55 !important;
+  white-space: normal !important;
+}
+
+.elementor-2098 .elementor-element-a58694c .elementor-heading-title,
+.elementor-2098 .elementor-element-dd30e96 .elementor-heading-title,
+footer.c-footer .elementor-element-dd30e96 .elementor-heading-title {
+  color: var(--jnp-text-caption-on-dark) !important;
+}
+
+/* --- 2. Footer hours + payment — stack vertically, no overlap ----------- */
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-items,
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-items.elementor-inline-items {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  flex-wrap: nowrap !important;
+  gap: 10px !important;
+  margin: 0 !important;
+}
+
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-item,
+.elementor-2098 .elementor-element-77c593f .elementor-inline-item {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.elementor-2098 .elementor-element-77c593f .elementor-icon-list-item::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Payment line — replace broken transparent + ::after double-text hack */
+.jnp-payment-note {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 2px !important;
+}
+
+.jnp-payment-note .elementor-icon-list-text {
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+}
+
+.jnp-payment-note .elementor-icon-list-text::after {
+  content: none !important;
+  display: none !important;
+}
+
+.jnp-payment-note .elementor-icon-list-text::before {
+  content: "Payment: PayPal, Credit Card, or Bank Transfer (IDR/USD)";
+  visibility: visible;
+  display: block;
+  height: auto;
+  color: var(--jnp-text-on-dark) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  font-family: "Inter", sans-serif !important;
+  font-weight: 400 !important;
+  white-space: normal !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+/* Footer list items — breathing room (extends FIX 6) */
+footer.c-footer .elementor-icon-list-item,
+footer.c-footer .elementor-icon-list-items > li {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  align-items: flex-start !important;
+  margin-bottom: 12px !important;
+}
+
+footer.c-footer .elementor-icon-list-text {
+  display: block !important;
+  overflow: visible !important;
+}
+
+footer.c-footer .elementor-widget-container {
+  overflow: visible !important;
+}
+
+/* Label / value pairs in footer left column */
+.elementor-2098 .elementor-element-c0db110,
+.elementor-2098 .elementor-element-da3d79a,
+.elementor-2098 .elementor-element-169f691 {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+  margin-bottom: 16px !important;
+}
+
+/* Payment method icons */
+.jnp-payment-icons-row i {
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+.jnp-payment-icons-row i:hover {
+  color: #D4AF37 !important;
+}
+
+/* --- 3. Checkboxes & form controls on dark UI --------------------------- */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #D4AF37;
+}
+
+input[type="checkbox"]:checked::after,
+input[type="radio"]:checked::after {
+  color: #050505 !important;
+}
+
+.wpcf7-list-item-label,
+.wpcf7-form-control-wrap label,
+.wpcf7-form label,
+.comment-form label,
+.woocommerce-form__label,
+.woocommerce-privacy-policy-text,
+.cookieadmin_cookie_modal p,
+.cookieadmin_cookie_modal label,
+.cookieadmin_cookie_modal span,
+.cookieadmin_remark {
+  color: var(--jnp-text-on-dark) !important;
+}
+
+/* WooCommerce / CF7 checkboxes visible on black */
+.wpcf7-list-item input[type="checkbox"],
+.woocommerce-form__input-checkbox,
+.comment-form input[type="checkbox"],
+#reviews input[type="checkbox"] {
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  background: #141414 !important;
+}
+
+.wpcf7-list-item input[type="checkbox"]:checked,
+.woocommerce-form__input-checkbox:checked,
+.comment-form input[type="checkbox"]:checked {
+  background: #D4AF37 !important;
+  border-color: #D4AF37 !important;
+}
+
+/* --- 4. Centered step cards — keep caption under icon, not justified ---- */
+div[style*="text-align:center"] p,
+div[style*="text-align: center"] p,
+.jnp-svc-step p,
+.jnp-svc-stepdesc,
+.elementor-element-6d3e5c5 + * p {
+  text-align: center !important;
+}
+
+/* How-it-works step descriptions on homepage */
+.elementor-widget-icon-box .elementor-icon-box-description,
+.elementor-widget-icon-box .elementor-icon-box-description p {
+  text-align: center !important;
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+/* --- 5. Product colour swatch labels on dark product page --------------- */
+.jnp-color-swatch__label {
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+.jnp-color-swatch__dot::after {
+  color: var(--jnp-text-muted-on-dark) !important;
+}
+
+.jnp-color-swatch__dot:hover::after,
+.jnp-color-swatch__dot.is-selected::after {
+  color: #FFFFFF !important;
+}

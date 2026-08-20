@@ -1,0 +1,213 @@
+**LAPORAN UI/UX**
+
+*jnpbali.com — Perspektif Turis*
+
+Tanggal: 16 Agustus 2026
+
+# Ringkasan Eksekutif
+
+Saya meninjau jnpbali.com dengan skenario: turis di Bali ingin memesan kaos custom dari foto liburan, dan ingin tahu harga, proses, waktu, serta cara bayar — tanpa menebak-nebak.
+
+Konsep bisnis jelas dan menarik: foto liburan → desain custom → dikirim ke hotel. Namun pengalaman website masih membingungkan untuk turis, terutama karena: (1) alur pemesanan di homepage tidak sesuai alur sebenarnya, (2) harga dan informasi pembayaran tidak konsisten, (3) terlalu banyak fokus B2B (affiliate, corporate), dan (4) produk custom terasa seperti toko biasa padahal prosesnya multi-langkah.
+
+Skor UX turis (perkiraan): 5.5/10 — ide bagus, eksekusi perlu disederhanakan.
+
+## Apa yang Sudah Bagus
+
+| **Aspek** | **Keterangan** |
+| --- | --- |
+| Value proposition | Hero "Turn Your Bali Memories Into Wearable Art" langsung menjelaskan manfaat |
+| Halaman How It Works | Detail 7 langkah di /how-it-works/ cukup lengkap |
+| FAQ | Menjawab banyak pertanyaan turis (upload setelah bayar, revisi, deadline sebelum pulang) |
+| Gallery | Konsep before/after (The Trip → The Custom Print) membantu bayangan hasil |
+| Pilihan desain | 11 gaya (AI + Original Design) memberi variasi |
+| Delivery ke hotel | Selling point kuat untuk turis — perlu lebih menonjol |
+
+## Masalah Kritis (Prioritas Tinggi)
+
+### 1. Alur di Homepage Menyesatkan
+
+Homepage (4 langkah): Send Your Photo → Choose a Style → Approve the Proof → Delivered to You
+
+Alur sebenarnya (FAQ + halaman produk): Pilih produk & bayar → Upload foto via link pribadi → Terima proof (2–3 hari kerja) → Approve/revisi → Produksi & kirim ke hotel
+
+Dampak: Turis mengira harus upload foto dulu sebelum order. Ini salah urutan dan bisa bikin frustrasi.
+
+Rekomendasi: Samakan homepage dengan alur nyata:
+
+- Pilih produk & bayar
+
+- Upload foto liburan Anda
+
+- Review & approve desain
+
+- Dikirim ke hotel sebelum pulang
+
+Tambahkan timeline: "Proof dalam 2–3 hari kerja setelah upload".
+
+### 2. Harga $0.01 — Merusak Kepercayaan
+
+Hampir semua produk (Custom Trip Tee, Mug, Hoodie) menampilkan $0.01, yang terlihat seperti placeholder/testing.
+
+Dampak: Turis ragu ini website resmi atau belum siap jual.
+
+- Pasang harga nyata (mis. $35–55 untuk tee custom)
+
+- Tampilkan "From $XX" jika harga bervariasi per gaya
+
+- Bedakan harga Original Design (gratis) vs Premium AI (add-on) di dropdown, bukan hanya di FAQ
+
+### 3. Informasi Pembayaran Bertentangan
+
+| **Lokasi** | **Informasi** |
+| --- | --- |
+| Footer | Payment: Direct Bank Transfer |
+| Halaman produk | Tombol Pay with PayPal |
+| Shop | Pre-order, konfirmasi via WhatsApp |
+
+Dampak: Turis internasional bingung — bayar lewat PayPal, transfer bank, atau WhatsApp?
+
+Rekomendasi — satu blok jelas di homepage & checkout:
+
+- PayPal & kartu kredit diterima
+
+- Transfer bank (IDR/USD) tersedia
+
+- Konfirmasi via WhatsApp setelah order
+
+### 4. CTA dan Navigasi Membingungkan
+
+| **Tombol** | **Tujuan** |
+| --- | --- |
+| Start Your Design | /shop/ |
+| Start Your Project | /request-a-quote/ (B2B/group) |
+| Become a Partner | Affiliate |
+
+Menu ramai: About Us, Services, Gallery, How It Works, Shop, Affiliate, Contacts — 7 item plus Login/Register.
+
+Rekomendasi untuk turis:
+
+- CTA utama: "Order Custom Souvenir" → langsung ke Custom Trip Tee
+
+- Sembunyikan atau pindahkan Affiliate ke footer
+
+- Tambahkan ikon keranjang di header
+
+- Pertimbangkan floating WhatsApp button (sangat familiar di Bali)
+
+### 5. Tidak Ada Upload Foto di Halaman Produk
+
+Di halaman Custom Trip Tee tidak ada field upload, padahal kategori produk bertuliskan "Photo Upload Enabled". Informasi upload ada di tab Description, tapi turis jarang scroll ke sana.
+
+Rekomendasi — banner di atas tombol Add to Cart:
+
+"Foto diupload SETELAH pembayaran. Anda akan dapat link pribadi via email/WhatsApp."
+
+## Masalah Menengah
+
+### 6. Pilihan Design Style Tanpa Preview Visual
+
+11 gaya hanya berupa dropdown teks (Anime, Graffiti, Watercolor, dll.) tanpa contoh gambar.
+
+Rekomendasi: Grid thumbnail per gaya (bisa dari Gallery), atau modal "See examples" per style.
+
+### 7. Informasi Stok Tidak Masuk Akal
+
+Produk custom menampilkan "981 in stock" — tidak relevan untuk made-to-order.
+
+Rekomendasi: Ganti dengan "Made to order — production starts after design approval" atau sembunyikan stok.
+
+### 8. Shop vs Produk — Pesan Bertentangan
+
+| **Shop page** | **Product page** |
+| --- | --- |
+| Konfirmasi size & color via WhatsApp | Ada dropdown Size & color picker |
+
+Rekomendasi: Pilih satu alur. Jika sudah ada selector di website, hapus kalimat WhatsApp dari shop intro.
+
+### 9. Dua Nomor Telepon Berbeda Negara
+
+- +1 712-339-9294 (US)
+
+- +62 877-4009-8436 (Indonesia)
+
+Rekomendasi: Untuk turis di Bali, prioritaskan nomor Indonesia + WhatsApp. Nomor US bisa di halaman About/Contact saja.
+
+### 10. Konten Brand Terlalu "Inside Baseball"
+
+Frasa seperti "DHB (Double Helix Brothers)", "One Tribe. Same Vibe", "Mood Mode" (coming soon) kurang relevan untuk turis yang cuma mau kaos souvenir.
+
+Rekomendasi — hero & shop fokus bahasa turis:
+
+- "Your Bali photo on a premium tee"
+
+- "Free delivery to your hotel"
+
+- "Ready before you fly home"
+
+### 11. Kurang Social Proof
+
+- Reviews (0) di semua produk
+
+- Gallery masih sedikit contoh
+
+- Tidak ada testimoni turis
+
+Rekomendasi: Foto pelanggan + hotel delivery, rating Google/TripAdvisor, atau "500+ trip tees delivered in Bali".
+
+### 12. Login/Register Terasa Wajib
+
+Tombol "Login / Register" menonjol di header, padahal turis biasanya ingin guest checkout.
+
+Rekomendasi: Guest checkout default; login opsional untuk tracking order.
+
+## Masalah Kecil / Polish
+
+| **Issue** | **Saran** |
+| --- | --- |
+| Cookie banner besar & persisten | Persempit; jangan tutupi CTA utama |
+| Tag teknis (photo-merch, Photo Upload Enabled) | Sembunyikan dari tampilan user |
+| Wishlist | Kurang relevan untuk turis one-time |
+| Lightbox gambar produk | Pastikan tidak mengganggu klik color picker |
+| Bahasa | Pastikan Bahasa Indonesia tersedia — penting untuk turis lokal & guide |
+| FAQ hanya di footer | Link FAQ dari halaman produk & checkout |
+| Perbedaan 4 vs 7 langkah How It Works | Gunakan versi yang sama di semua halaman |
+
+## User Journey Ideal untuk Turis
+
+- Homepage → Custom Trip Tee
+
+- Pilih style + size + warna
+
+- Add to Cart → Checkout + bayar
+
+- Upload foto via link pribadi
+
+- Approve proof via WhatsApp
+
+- Terima di hotel
+
+Setiap langkah perlu satu pesan jelas: "Anda di langkah X dari 5".
+
+## Prioritas Perbaikan (Quick Wins)
+
+| **#** | **Perbaikan** | **Effort** | **Impact** |
+| --- | --- | --- | --- |
+| 1 | Perbaiki harga placeholder ($0.01) | Rendah | Sangat tinggi |
+| 2 | Koreksi urutan How It Works di homepage | Rendah | Sangat tinggi |
+| 3 | Banner "Upload foto setelah bayar" di produk | Rendah | Tinggi |
+| 4 | Satu pesan payment yang konsisten | Rendah | Tinggi |
+| 5 | CTA tunggal untuk turis + kurangi menu | Sedang | Tinggi |
+| 6 | Preview visual design styles | Sedang | Tinggi |
+| 7 | WhatsApp floating button | Rendah | Sedang |
+| 8 | Social proof & testimoni | Sedang | Sedang |
+
+## Kesimpulan
+
+jnpbali.com punya positioning unik yang cocok untuk turis Bali: custom apparel dari foto liburan + delivery ke hotel. Itu diferensiator kuat.
+
+Yang perlu diperbaiki bukan konsepnya, melainkan kejelasan alur, kepercayaan (harga & pembayaran), dan fokus UX untuk turis — bukan affiliate/corporate di jalur utama pembelian.
+
+Jika tiga hal ini diselesaikan dulu — harga nyata, alur homepage benar, dan banner upload setelah bayar — pengalaman turis bisa naik signifikan tanpa redesign penuh.
+
+*Laporan ini berdasarkan peninjauan langsung website jnpbali.com per 16 Agustus 2026.*

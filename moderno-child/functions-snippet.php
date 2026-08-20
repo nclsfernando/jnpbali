@@ -1,7 +1,7 @@
 <?php
 /**
  * Enqueue ui-fixes.css — tambahkan di AKHIR functions.php (moderno-child)
- * v23.6 — Aug 2026
+ * v23.8 — Aug 2026
  *
  * Juga: header-custom.js (WA number, lightbox guard, hotel sync),
  * free hotel delivery, Stripe label.
@@ -13,7 +13,7 @@ add_action(
 			'jnp-ui-fixes',
 			get_stylesheet_directory_uri() . '/ui-fixes.css',
 			array(),
-			'23.6.0'
+			'23.8.0'
 		);
 	},
 	99

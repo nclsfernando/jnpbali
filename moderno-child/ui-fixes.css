@@ -1,5 +1,5 @@
 /* ==========================================================================
-   J&P Bali — UI fixes v23.7 (Aug 2026)
+   J&P Bali — UI fixes v23.8 (Aug 2026)
    Load AFTER header-custom.css and Elementor. Overrides broken rules in
    Appearance → Customize → Additional CSS (payment ::after hack, gray-on-black).
    ========================================================================== */
@@ -1571,14 +1571,22 @@ body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-57150
   }
 }
 
-/* Who We Are — two columns that can shrink */
-body.home .elementor-element-who01c > .e-con-inner,
-body.front-page .elementor-element-who01c > .e-con-inner {
-  display: grid !important;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
-  gap: 32px 48px !important;
-  align-items: start !important;
-  padding: 0 !important;
+/* Who We Are — two columns on desktop only (tablet measured 302px + 370px) */
+@media (min-width: 1025px) {
+  body.home .elementor-element-who01c > .e-con-inner,
+  body.front-page .elementor-element-who01c > .e-con-inner,
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+    gap: 32px 48px !important;
+    align-items: start !important;
+  }
+
+  body.home .elementor-element-who01c > .e-con-inner,
+  body.front-page .elementor-element-who01c > .e-con-inner {
+    padding: 0 !important;
+  }
 }
 
 body.home .elementor-element-who02col1,
@@ -1680,8 +1688,12 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
   }
 
   body.home .elementor-element-who01c > .e-con-inner,
-  body.front-page .elementor-element-who01c > .e-con-inner {
-    gap: 24px 32px !important;
+  body.front-page .elementor-element-who01c > .e-con-inner,
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
   }
 }
 
@@ -1750,4 +1762,47 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
   body.front-page .elementor-element-svc07c4 {
     padding: 12px 0 !important;
   }
+
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* --- 13. Homepage audit v23.8 — focus rings + stacked Who We Are ----------
+   Measured live Aug 20 2026 at 1440 / 1025 / 768 / 390 (no Figma file):
+   - Who We Are stayed 2-col at 768 (302px graphic / 370px copy)
+   - who01c padding-inline 24px beat mobile 16px (higher .e-con specificity)
+   - Hamburger / menu / Elementor CTAs had no :focus-visible ring
+   ------------------------------------------------------------------------ */
+
+.jnp-hamburger:focus-visible {
+  outline: 2px solid var(--jnp-gold, #D4AF37);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.jnp-mobile-menu__list a:focus-visible,
+.jnp-cta:focus-visible,
+.jnp-cta--mobile:focus-visible {
+  outline: 2px solid var(--jnp-gold, #D4AF37);
+  outline-offset: 3px;
+}
+
+body.home .elementor-button:focus-visible,
+body.front-page .elementor-button:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 3px;
+}
+
+body.home .elementor-element-hero04b .elementor-widget-container,
+body.home .elementor-element-hero04b .elementor-widget-container > div,
+body.front-page .elementor-element-hero04b .elementor-widget-container,
+body.front-page .elementor-element-hero04b .elementor-widget-container > div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 12px 16px !important;
 }

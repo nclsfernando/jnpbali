@@ -1,5 +1,5 @@
 /* ==========================================================================
-   J&P Bali — UI fixes v23.8 (Aug 2026)
+   J&P Bali — UI fixes v23.9 (Aug 2026)
    Load AFTER header-custom.css and Elementor. Overrides broken rules in
    Appearance → Customize → Additional CSS (payment ::after hack, gray-on-black).
    ========================================================================== */
@@ -1768,12 +1768,21 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
+
+  /* Elementor mobile padding-right:72px squeezed stacked copy to 270px */
+  body.home .e-con.elementor-element-who04col2,
+  body.front-page .e-con.elementor-element-who04col2 {
+    padding-right: 0 !important;
+    --padding-right: 0px;
+    --padding-inline-end: 0px;
+  }
 }
 
-/* --- 13. Homepage audit v23.8 — focus rings + stacked Who We Are ----------
-   Measured live Aug 20 2026 at 1440 / 1025 / 768 / 390 (no Figma file):
+/* --- 13. Homepage audit v23.8 / v23.9 — Who We Are + focus rings ----------
+   Measured live Aug 20–21 2026 at 1440 / 1025 / 768 / 390 (no Figma file):
    - Who We Are stayed 2-col at 768 (302px graphic / 370px copy)
    - who01c padding-inline 24px beat mobile 16px (higher .e-con specificity)
+   - who04col2 Elementor padding-right 72px squeezed copy to 270px at 390
    - Hamburger / menu / Elementor CTAs had no :focus-visible ring
    ------------------------------------------------------------------------ */
 
@@ -1791,7 +1800,11 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
 }
 
 body.home .elementor-button:focus-visible,
-body.front-page .elementor-button:focus-visible {
+body.front-page .elementor-button:focus-visible,
+body.home .elementor-element-hero04b a:focus-visible,
+body.front-page .elementor-element-hero04b a:focus-visible,
+body.home .elementor-element-cta04row a:focus-visible,
+body.front-page .elementor-element-cta04row a:focus-visible {
   outline: 2px solid #D4AF37;
   outline-offset: 3px;
 }

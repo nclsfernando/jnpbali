@@ -14,6 +14,12 @@
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
+  body.home .e-con.elementor-element-who04col2,
+  body.front-page .e-con.elementor-element-who04col2 {
+    padding-right: 0 !important;
+    --padding-right: 0px;
+    --padding-inline-end: 0px;
+  }
 }
 .jnp-hamburger:focus-visible {
   outline: 2px solid #D4AF37;
@@ -26,7 +32,11 @@
   outline-offset: 2px;
 }
 body.home .elementor-button:focus-visible,
-body.front-page .elementor-button:focus-visible {
+body.front-page .elementor-button:focus-visible,
+body.home .elementor-element-hero04b a:focus-visible,
+body.front-page .elementor-element-hero04b a:focus-visible,
+body.home .elementor-element-cta04row a:focus-visible,
+body.front-page .elementor-element-cta04row a:focus-visible {
   outline: 2px solid #D4AF37;
   outline-offset: 3px;
 }

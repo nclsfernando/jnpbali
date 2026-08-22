@@ -5,6 +5,8 @@
 *.pem
 *.key
 credentials.json
+mcp.json
+**/mcp*.json
 
 # Dependencies
 node_modules/
@@ -18,6 +20,23 @@ _zipcheck/
 _mug-product.html
 _product.html
 _shop.html
+
+# One-shot MCP / batch / Playwright work products (never commit)
+moderno-child/_pwtmp/
+moderno-child/_batch-*
+moderno-child/_fix-style-prompts-*
+moderno-child/_mcp-*
+moderno-child/_pw-*
+moderno-child/_wp-2845-*
+moderno-child/jnp-apply-style-prompt-fix-*
+moderno-child/*-v238*
+**/_pwtmp/
+**/_batch-*
+**/_mcp-*-args.json
+**/_mcp-*-payload.json
+**/*-run-status-*.json
+**/*-update-result-*.json
+**/*-verify-*.json
 
 # Playwright / local screenshots
 *.png

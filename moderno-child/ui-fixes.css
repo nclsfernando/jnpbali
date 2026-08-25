@@ -1,5 +1,5 @@
 /* ==========================================================================
-   J&P Bali — UI fixes v23.7 (Aug 2026)
+   J&P Bali — UI fixes v23.11 (Aug 2026)
    Load AFTER header-custom.css and Elementor. Overrides broken rules in
    Appearance → Customize → Additional CSS (payment ::after hack, gray-on-black).
    ========================================================================== */
@@ -1571,14 +1571,61 @@ body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-57150
   }
 }
 
-/* Who We Are — two columns that can shrink */
-body.home .elementor-element-who01c > .e-con-inner,
-body.front-page .elementor-element-who01c > .e-con-inner {
-  display: grid !important;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
-  gap: 32px 48px !important;
-  align-items: start !important;
-  padding: 0 !important;
+@media (max-width: 1024px) {
+  body.home .e-con.elementor-element-hiw03row::before,
+  body.front-page .e-con.elementor-element-hiw03row::before {
+    content: none !important;
+    display: none !important;
+    border: 0 !important;
+  }
+}
+
+/* Who We Are — two columns on desktop only.
+   Live v24.7 still applies an unscoped 2-col (Additional CSS + ui-fixes)
+   so tablet 768 measures 302px + 370px. Stack from tablet down.
+   Live v24.7 also sets who04col2 / p { padding-right: 72px } on mobile,
+   shrinking copy to 270px. Clear that padding. */
+@media (min-width: 1025px) {
+  body.home .elementor-element-who01c > .e-con-inner,
+  body.front-page .elementor-element-who01c > .e-con-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+    gap: 32px 48px !important;
+    align-items: start !important;
+    padding: 0 !important;
+  }
+}
+
+/* Beat Additional CSS body.home .e-con.elementor-element-who01c (0,3,0)
+   and live ui-fixes who04col2 padding-right: 72px (0,3,1). */
+@media (max-width: 1024px) {
+  html body.home .e-con.elementor-element-who01c,
+  html body.front-page .e-con.elementor-element-who01c,
+  html body.home .elementor-element-who01c > .e-con-inner,
+  html body.front-page .elementor-element-who01c > .e-con-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    --e-con-grid-template-columns: minmax(0, 1fr);
+    gap: 24px !important;
+    align-items: stretch !important;
+  }
+
+  html body.home .e-con.elementor-element-who02col1,
+  html body.home .e-con.elementor-element-who04col2,
+  html body.front-page .e-con.elementor-element-who02col1,
+  html body.front-page .e-con.elementor-element-who04col2,
+  html body.home .e-con.elementor-element-who04col2 p,
+  html body.front-page .e-con.elementor-element-who04col2 p {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    --padding-right: 0px;
+    --padding-left: 0px;
+    --padding-inline-end: 0px;
+    --padding-inline-start: 0px;
+  }
 }
 
 body.home .elementor-element-who02col1,
@@ -1679,9 +1726,9 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
     gap: 20px 24px !important;
   }
 
-  body.home .elementor-element-who01c > .e-con-inner,
-  body.front-page .elementor-element-who01c > .e-con-inner {
-    gap: 24px 32px !important;
+  html body.home .elementor-element-who01c > .e-con-inner,
+  html body.front-page .elementor-element-who01c > .e-con-inner {
+    gap: 24px !important;
   }
 }
 
@@ -1693,13 +1740,18 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
 
   body.home .elementor-element-hiw01c,
   body.front-page .elementor-element-hiw01c,
-  body.home .elementor-element-who01c,
-  body.front-page .elementor-element-who01c,
   body.home .elementor-element-svc01c,
   body.front-page .elementor-element-svc01c,
   body.home .elementor-element-cta01c,
   body.front-page .elementor-element-cta01c {
     padding: 40px 16px !important;
+  }
+
+  /* .e-con + html beats Additional CSS padding-left/right: 24px */
+  html body.home .e-con.elementor-element-who01c,
+  html body.front-page .e-con.elementor-element-who01c {
+    padding: 40px 16px !important;
+    padding-inline: 16px !important;
   }
 
   body.home .elementor-element-hero01c > .e-con-inner,
@@ -1750,4 +1802,19 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
   body.front-page .elementor-element-svc07c4 {
     padding: 12px 0 !important;
   }
+}
+
+/* --- 13. Keyboard focus — gold rings (v23.11) ----------------------------- */
+.jnp-hamburger:focus-visible,
+.jnp-mobile-menu a:focus-visible,
+.jnp-header .jnp-cta:focus-visible,
+.jnp-nav__list a:focus-visible,
+body.home .elementor-element-hero04b a:focus-visible,
+body.home .elementor-element-cta04row a:focus-visible,
+body.front-page .elementor-element-hero04b a:focus-visible,
+body.front-page .elementor-element-cta04row a:focus-visible,
+body.home a.elementor-button:focus-visible,
+body.front-page a.elementor-button:focus-visible {
+  outline: 2px solid #D4AF37 !important;
+  outline-offset: 3px !important;
 }

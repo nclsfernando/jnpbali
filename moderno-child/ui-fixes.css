@@ -1,7 +1,11 @@
 /* ==========================================================================
-   J&P Bali — UI fixes v23.7 (Aug 2026)
+   J&P Bali — UI fixes v23.12 (Aug 2026)
    Load AFTER header-custom.css and Elementor. Overrides broken rules in
    Appearance → Customize → Additional CSS (payment ::after hack, gray-on-black).
+   Homepage overlay: Who We Are stacks ≤1024; mobile copy pad; CTA focus/hover.
+   Production currently enqueues uploads jnp-ui-fixes-v24.7.css.txt — paste
+   jnp-homepage-overlay-v23.12.css into Additional CSS (after existing rules)
+   rather than replacing v24.7 wholesale.
    ========================================================================== */
 
 :root {
@@ -1571,14 +1575,23 @@ body.front-page .e-con.elementor-element-hiw03row .e-con.elementor-element-57150
   }
 }
 
-/* Who We Are — two columns that can shrink */
-body.home .elementor-element-who01c > .e-con-inner,
-body.front-page .elementor-element-who01c > .e-con-inner {
-  display: grid !important;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
-  gap: 32px 48px !important;
-  align-items: start !important;
-  padding: 0 !important;
+/* Who We Are — two columns on desktop only. Additional CSS also sets the
+   2-col grid on .e-con.elementor-element-who01c (inner is display:contents). */
+@media (min-width: 1025px) {
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c,
+  body.home .elementor-element-who01c > .e-con-inner,
+  body.front-page .elementor-element-who01c > .e-con-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+    gap: 32px 48px !important;
+    align-items: start !important;
+  }
+
+  body.home .elementor-element-who01c > .e-con-inner,
+  body.front-page .elementor-element-who01c > .e-con-inner {
+    padding: 0 !important;
+  }
 }
 
 body.home .elementor-element-who02col1,
@@ -1588,6 +1601,25 @@ body.front-page .elementor-element-who04col2 {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
+}
+
+body.home .elementor-element-hero04b a:hover,
+body.front-page .elementor-element-hero04b a:hover,
+body.home .elementor-element-cta04row a:hover,
+body.front-page .elementor-element-cta04row a:hover {
+  background-color: #E5C24C !important;
+  color: #050505 !important;
+  border-color: #E5C24C !important;
+}
+
+body.home .elementor-element-hero04b a:focus-visible,
+body.front-page .elementor-element-hero04b a:focus-visible,
+body.home .elementor-element-cta04row a:focus-visible,
+body.front-page .elementor-element-cta04row a:focus-visible,
+body.home .elementor-element-who04col2 a:focus-visible,
+body.front-page .elementor-element-who04col2 a:focus-visible {
+  outline: 2px solid #D4AF37 !important;
+  outline-offset: 3px !important;
 }
 
 body.home .elementor-element-svcfeatured,
@@ -1679,9 +1711,21 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
     gap: 20px 24px !important;
   }
 
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c,
   body.home .elementor-element-who01c > .e-con-inner,
   body.front-page .elementor-element-who01c > .e-con-inner {
-    gap: 24px 32px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
+  }
+
+  body.home .elementor-element-who04col2,
+  body.front-page .elementor-element-who04col2,
+  body.home .elementor-element-who04col2 p,
+  body.front-page .elementor-element-who04col2 p {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
   }
 }
 
@@ -1702,6 +1746,23 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
     padding: 40px 16px !important;
   }
 
+  /* Longhands beat Additional CSS padding-left/right: 24px on .e-con.who01c */
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  body.home .elementor-element-who04col2,
+  body.front-page .elementor-element-who04col2,
+  body.home .elementor-element-who04col2 p,
+  body.front-page .elementor-element-who04col2 p {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
   body.home .elementor-element-hero01c > .e-con-inner,
   body.front-page .elementor-element-hero01c > .e-con-inner {
     padding-top: 8px !important;
@@ -1717,6 +1778,8 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
   body.front-page .e-con.elementor-element-hiw03row,
   body.home .elementor-element-svc03row > .e-con-inner,
   body.front-page .elementor-element-svc03row > .e-con-inner,
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c,
   body.home .elementor-element-who01c > .e-con-inner,
   body.front-page .elementor-element-who01c > .e-con-inner {
     grid-template-columns: minmax(0, 1fr) !important;

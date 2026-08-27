@@ -1,0 +1,84 @@
+/* ==========================================================================
+   J&P Bali — homepage overlay v23.13 (2026-08-27)
+   Paste AFTER existing Appearance → Customize → Additional CSS.
+   Do not replace uploads jnp-ui-fixes-v24.7.css.txt wholesale.
+
+   Live https://jnpbali.com/ verified 2026-08-27 (Chrome, no Figma file):
+   - Who We Are still 2-col at 768 (302+370) from unscoped Additional CSS
+     `.e-con.elementor-element-who01c` → stack to 1-col ≤1024
+   - Mobile who04col2 padding-right 72px shrinking copy to 270px → 0
+   - Mobile who01c side padding 24px (Additional CSS longhands) → 16px
+   - Hero/CTA inline `background:#D4AF37` has no hover fill; :focus-visible
+     gold ring is already in Additional CSS v25.0.60 (kept here as fallback)
+   - What We Do is display:none on the homepage (Additional CSS v25.0.34).
+     Do not restore a 4-col/2x2 grid without a Figma source.
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  html body.home .e-con.elementor-element-who01c,
+  html body.front-page .e-con.elementor-element-who01c,
+  html body.home .elementor-element-who01c > .e-con-inner,
+  html body.front-page .elementor-element-who01c > .e-con-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
+  }
+
+  html body.home .elementor-element-who02col1,
+  html body.home .elementor-element-who04col2,
+  html body.front-page .elementor-element-who02col1,
+  html body.front-page .elementor-element-who04col2 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html body.home .elementor-element-who04col2,
+  html body.front-page .elementor-element-who04col2,
+  html body.home .elementor-element-who04col2 p,
+  html body.front-page .elementor-element-who04col2 p {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html body.home .e-con.elementor-element-who01c,
+  html body.front-page .e-con.elementor-element-who01c {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  html body.home .elementor-element-who04col2,
+  html body.front-page .elementor-element-who04col2,
+  html body.home .elementor-element-who04col2 p,
+  html body.front-page .elementor-element-who04col2 p {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+/* Inline `background:#D4AF37` on hero/CTA <a> needs the shorthand + :hover
+   specificity bump; background-color alone does not win. */
+html body.home .elementor-element-hero04b a:hover,
+html body.front-page .elementor-element-hero04b a:hover,
+html body.home .elementor-element-cta04row a:hover,
+html body.front-page .elementor-element-cta04row a:hover,
+html body.home .elementor-element-who04col2 a:hover,
+html body.front-page .elementor-element-who04col2 a:hover {
+  background: #E5C24C !important;
+  background-color: #E5C24C !important;
+  color: #050505 !important;
+  border-color: #E5C24C !important;
+}
+
+html body.home .elementor-element-hero04b a:focus-visible,
+html body.front-page .elementor-element-hero04b a:focus-visible,
+html body.home .elementor-element-cta04row a:focus-visible,
+html body.front-page .elementor-element-cta04row a:focus-visible,
+html body.home .elementor-element-who04col2 a:focus-visible,
+html body.front-page .elementor-element-who04col2 a:focus-visible {
+  outline: 2px solid #D4AF37 !important;
+  outline-offset: 3px !important;
+}

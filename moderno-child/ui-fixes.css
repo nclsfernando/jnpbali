@@ -1457,6 +1457,23 @@ body.front-page .elementor-element-hero04b .elementor-widget-container > div {
   margin-top: 24px !important;
 }
 
+/* Inline `background:#D4AF37` is not overridden by background-color alone. */
+body.home .elementor-element-hero04b a:hover,
+body.home .elementor-element-hero04b a:focus-visible,
+body.front-page .elementor-element-hero04b a:hover,
+body.front-page .elementor-element-hero04b a:focus-visible,
+body.home .elementor-element-cta01c a[style*="background"]:hover,
+body.front-page .elementor-element-cta01c a[style*="background"]:hover,
+body.home .elementor-element-who04col2 a[style*="background"]:hover,
+body.front-page .elementor-element-who04col2 a[style*="background"]:hover,
+body.home a[style*="background: #D4AF37"]:hover,
+body.home a[style*="background:#D4AF37"]:hover,
+body.front-page a[style*="background: #D4AF37"]:hover,
+body.front-page a[style*="background:#D4AF37"]:hover {
+  background: #E5C24C !important;
+  background-color: #E5C24C !important;
+}
+
 @media (min-width: 1025px) {
   body.home .elementor-element-hero01c,
   body.front-page .elementor-element-hero01c {
@@ -1680,8 +1697,12 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
   }
 
   body.home .elementor-element-who01c > .e-con-inner,
-  body.front-page .elementor-element-who01c > .e-con-inner {
-    gap: 24px 32px !important;
+  body.front-page .elementor-element-who01c > .e-con-inner,
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
   }
 }
 
@@ -1700,6 +1721,20 @@ body.front-page .elementor-element-cta04row .elementor-widget-container > div {
   body.home .elementor-element-cta01c,
   body.front-page .elementor-element-cta01c {
     padding: 40px 16px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Additional CSS longhands set who04col2 / p padding-right: 72px */
+  body.home .elementor-element-who04col2,
+  body.front-page .elementor-element-who04col2,
+  body.home .elementor-element-who04col2 p,
+  body.front-page .elementor-element-who04col2 p,
+  body.home .elementor-element-who04col2 .elementor-widget-text-editor,
+  body.front-page .elementor-element-who04col2 .elementor-widget-text-editor {
+    padding-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
   body.home .elementor-element-hero01c > .e-con-inner,

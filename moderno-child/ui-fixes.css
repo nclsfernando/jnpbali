@@ -1505,19 +1505,53 @@ body.front-page a[style*="background:#D4AF37"]:hover {
     grid-column: 3;
     grid-row: 1;
     justify-self: end;
+    pointer-events: auto !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    z-index: 1000004 !important;
   }
 
-  .jnp-logo {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .jnp-logo__img {
-    height: 48px !important;
-  }
-
+  #jnp-mobile-menu,
+  #jnp-mobile-menu.jnp-mobile-menu,
   .jnp-mobile-menu {
-    top: var(--jnp-header-h) !important;
+    display: block !important;
+    position: fixed !important;
+    top: var(--jnp-header-h, 70px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: auto !important;
+    background: #0b0b0b !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: 1000002 !important;
+    clip: auto !important;
+    clip-path: none !important;
+  }
+
+  #jnp-mobile-menu.jnp-mobile-menu.is-open,
+  #jnp-mobile-menu.is-open,
+  body.jnp-menu-open #jnp-mobile-menu,
+  body.jnp-menu-open #jnp-mobile-menu.jnp-mobile-menu,
+  .jnp-mobile-menu.is-open,
+  body.jnp-menu-open .jnp-mobile-menu {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+
+  body.jnp-menu-open #jnp-mobile-menu a,
+  #jnp-mobile-menu.is-open a,
+  .jnp-mobile-menu.is-open a {
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 }
 

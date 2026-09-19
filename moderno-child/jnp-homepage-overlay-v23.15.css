@@ -1,0 +1,127 @@
+/* ==========================================================================
+   J&P Bali — homepage overlay v23.15 (Sep 2026)
+   Paste AFTER Appearance → Customize → Additional CSS (v25.0.65).
+   Do not replace uploads jnp-ui-fixes-v24.7.css.txt.
+
+   Verified live 2026-09-19 (Figma file/URL not available):
+   - Who We Are stays 2-col at 768 (302 + 370) via unscoped Additional CSS
+     `.e-con.elementor-element-who01c { grid-template-columns: 0.9fr 1.1fr }`
+   - Mobile who01c padding-left/right 24px longhands beat 16px shorthand
+   - who04col2 / p padding-right: 72px → copy 270px on 390px
+   - Hero/CTA inline `background:#D4AF37` has no hover fill change
+   - Login / Register clips past the viewport at 1025–1100 (hamburger only
+     at ≤1024; header inner keeps 40px side padding + full desktop nav)
+   ========================================================================== */
+
+/* --- Header: hamburger before Login / Register clips --------------------- */
+@media (max-width: 1199px) {
+  :root {
+    --jnp-header-h: 70px;
+  }
+
+  body {
+    padding-top: var(--jnp-header-h, 70px) !important;
+  }
+
+  .jnp-header {
+    height: var(--jnp-header-h) !important;
+  }
+
+  .jnp-header__inner {
+    grid-template-columns: 1fr auto 1fr !important;
+    padding: 0 20px !important;
+    gap: 16px !important;
+    max-width: none !important;
+  }
+
+  .jnp-nav--left,
+  .jnp-nav--right {
+    display: none !important;
+  }
+
+  .jnp-hamburger {
+    display: flex !important;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .jnp-logo {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .jnp-logo__img {
+    height: 48px !important;
+  }
+
+  .jnp-mobile-menu {
+    top: var(--jnp-header-h) !important;
+  }
+}
+
+/* --- Who We Are: stack below desktop nav breakpoint ---------------------- */
+@media (max-width: 1024px) {
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c,
+  .elementor-1993 .e-con.elementor-element-who01c,
+  body.home .elementor-element-who01c > .e-con-inner,
+  body.front-page .elementor-element-who01c > .e-con-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
+    align-items: start !important;
+  }
+
+  body.home .elementor-element-who02col1,
+  body.home .elementor-element-who04col2,
+  body.front-page .elementor-element-who02col1,
+  body.front-page .elementor-element-who04col2 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* --- Mobile: 16px side padding + kill 72px copy inset -------------------- */
+@media (max-width: 767px) {
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c,
+  .elementor-1993 .e-con.elementor-element-who01c {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  body.home .elementor-element-who04col2,
+  body.front-page .elementor-element-who04col2,
+  body.home .elementor-element-who04col2 p,
+  body.front-page .elementor-element-who04col2 p,
+  body.home .elementor-element-who04col2 .elementor-widget-text-editor,
+  body.front-page .elementor-element-who04col2 .elementor-widget-text-editor {
+    padding-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* --- Gold fill CTAs: hover (inline background shorthand) ----------------- */
+body.home .elementor-element-hero04b a:hover,
+body.home .elementor-element-hero04b a:focus-visible,
+body.front-page .elementor-element-hero04b a:hover,
+body.front-page .elementor-element-hero04b a:focus-visible,
+.elementor-1993 .elementor-element-hero04b a:hover,
+.elementor-1993 .elementor-element-hero04b a:focus-visible,
+body.home .elementor-element-cta01c a[style*="background"]:hover,
+body.front-page .elementor-element-cta01c a[style*="background"]:hover,
+body.home .elementor-element-who04col2 a[style*="background"]:hover,
+body.front-page .elementor-element-who04col2 a[style*="background"]:hover,
+body.home a[style*="background: #D4AF37"]:hover,
+body.home a[style*="background:#D4AF37"]:hover,
+body.front-page a[style*="background: #D4AF37"]:hover,
+body.front-page a[style*="background:#D4AF37"]:hover {
+  background: #E5C24C !important;
+  background-color: #E5C24C !important;
+}

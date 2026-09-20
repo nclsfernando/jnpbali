@@ -177,7 +177,7 @@ body.admin-bar .jnp-mobile-menu{ top: calc(var(--jnp-header-h-mobile) + 32px); }
   body.admin-bar .jnp-mobile-menu{ top: calc(var(--jnp-header-h-mobile) + 46px); }
 }
 
-@media (max-width: 1024px){
+@media (max-width: 1199px){
   :root{ --jnp-header-h: var(--jnp-header-h-mobile); }
   .jnp-header__inner{
     grid-template-columns: 1fr auto 1fr;

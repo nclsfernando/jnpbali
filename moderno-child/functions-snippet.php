@@ -20,6 +20,23 @@ add_action(
 );
 
 /**
+ * Homepage overlay v23.16 — must load AFTER Additional CSS (#wp-custom-css).
+ * WP prints custom CSS at priority 101; keep this at 110.
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		wp_enqueue_style(
+			'jnp-homepage-overlay',
+			get_stylesheet_directory_uri() . '/jnp-homepage-overlay-v23.16.css',
+			array(),
+			'23.16.0'
+		);
+	},
+	110
+);
+
+/**
  * Floating cart + wishlist → cart integration
  */
 require_once get_stylesheet_directory() . '/jnp-floating-cart.php';

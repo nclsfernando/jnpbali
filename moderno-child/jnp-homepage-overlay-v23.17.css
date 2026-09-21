@@ -1,0 +1,212 @@
+/* ==========================================================================
+   J&P Bali — homepage overlay v23.17 (21 Sep 2026)
+   Visual/responsive audit of https://jnpbali.com/ (no Figma file in repo).
+
+   WHY THIS FILE EXISTS
+   Live cascade is uploads jnp-ui-fixes-v24.7.css.txt + header-custom.css +
+   jnp-site-polish.css + Additional CSS v25.0.65 (~113KB, #wp-custom-css).
+   Additional CSS wins over child-theme CSS at priority 99, so the layout
+   bugs below cannot be fixed by replacing v24.7 alone.
+
+   Live header-custom.css (21 Sep) moved the hamburger to max-width 860px,
+   while Additional CSS still forces desktop nav at min-width 1025px.
+   Login/Register therefore stays on the bar from 1025–1199 and clips
+   (1025: right 1065 vs 1025; 1100: right 1103 vs 1100).
+
+   DEPLOY (pick one; do not replace v24.7 wholesale)
+   A) Appearance → Customize → Additional CSS: paste this file AFTER existing CSS.
+   B) Child-theme enqueue at priority 110 (see functions-snippet.php).
+
+   Does not restore homepage “What We Do” (intentionally hidden in Additional CSS).
+   Does not restyle the Login/Register ghost pill, CookieAdmin, WA, or TranslatePress.
+   Avoids child combinators so WordPress Additional CSS kses can paste it.
+   ========================================================================== */
+
+/* --- Gold CTA hover -------------------------------------------------------
+   Inline style background:#D4AF37 is not overridden by background-color.
+   Rest fill stays #D4AF37; hover uses the gold lighten already used on nav.
+   Same inline fill exists on the bottom Ready-for-merch row (cta04row). */
+body.home .elementor-element-hero04b a:hover,
+body.home .elementor-element-hero04b a:focus-visible,
+body.home .elementor-element-hero04b .elementor-button:hover,
+body.home .elementor-element-hero04b .elementor-button:focus-visible,
+body.front-page .elementor-element-hero04b a:hover,
+body.front-page .elementor-element-hero04b a:focus-visible,
+body.front-page .elementor-element-hero04b .elementor-button:hover,
+body.front-page .elementor-element-hero04b .elementor-button:focus-visible,
+body.home .elementor-element-cta04row a:hover,
+body.home .elementor-element-cta04row a:focus-visible,
+body.front-page .elementor-element-cta04row a:hover,
+body.front-page .elementor-element-cta04row a:focus-visible {
+  background: #E5C24C !important;
+  background-color: #E5C24C !important;
+}
+
+body.home .elementor-element-hero04b a:active,
+body.home .elementor-element-hero04b .elementor-button:active,
+body.front-page .elementor-element-hero04b a:active,
+body.front-page .elementor-element-hero04b .elementor-button:active,
+body.home .elementor-element-cta04row a:active,
+body.front-page .elementor-element-cta04row a:active {
+  background: #D4AF37 !important;
+  background-color: #D4AF37 !important;
+}
+
+/* Outline CTAs keep a transparent rest fill; do not force gold on :active. */
+body.home .elementor-element-hero04b a[style*="background: transparent"]:hover,
+body.home .elementor-element-hero04b a[style*="background: transparent"]:focus-visible,
+body.home .elementor-element-hero04b a[style*="background: transparent"]:active,
+body.front-page .elementor-element-hero04b a[style*="background: transparent"]:hover,
+body.front-page .elementor-element-hero04b a[style*="background: transparent"]:focus-visible,
+body.front-page .elementor-element-hero04b a[style*="background: transparent"]:active,
+body.home .elementor-element-cta04row a[style*="background:transparent"]:hover,
+body.home .elementor-element-cta04row a[style*="background:transparent"]:focus-visible,
+body.home .elementor-element-cta04row a[style*="background:transparent"]:active,
+body.front-page .elementor-element-cta04row a[style*="background:transparent"]:hover,
+body.front-page .elementor-element-cta04row a[style*="background:transparent"]:focus-visible,
+body.front-page .elementor-element-cta04row a[style*="background:transparent"]:active {
+  background: #E5C24C !important;
+  background-color: #E5C24C !important;
+  color: #050505 !important;
+}
+
+/* --- Header: hamburger through 1199px -------------------------------------
+   Additional CSS @media (min-width: 1025px) forces desktop nav and hides
+   #jnp-mobile-menu / .jnp-hamburger. Compact 1025–1180 gaps still clip
+   Login/Register (1025: right 1065 vs 1025; 1100: right 1103 vs 1100). */
+@media (max-width: 1199px) {
+  :root {
+    --jnp-header-h: var(--jnp-header-h-mobile, 70px);
+  }
+
+  .jnp-header {
+    height: var(--jnp-header-h) !important;
+  }
+
+  .jnp-header__inner {
+    grid-template-columns: 1fr auto 1fr !important;
+    padding: 0 20px !important;
+    gap: 16px !important;
+  }
+
+  .jnp-nav,
+  .jnp-nav--left,
+  .jnp-nav--right {
+    display: none !important;
+  }
+
+  .jnp-logo {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  .jnp-logo__img {
+    height: 48px !important;
+  }
+
+  .jnp-hamburger {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    z-index: 1000004 !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .jnp-mobile-menu {
+    top: var(--jnp-header-h) !important;
+  }
+
+  /* Closed drawer: keep Additional CSS hide, but allow .is-open to win. */
+  #jnp-mobile-menu.is-open,
+  .jnp-mobile-menu.is-open {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: auto !important;
+    clip: auto !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+
+  #jnp-mobile-menu.is-open a,
+  .jnp-mobile-menu.is-open a {
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .jnp-header__inner {
+    padding: 0 16px !important;
+  }
+
+  .jnp-logo__img {
+    height: 40px !important;
+  }
+}
+
+/* --- Who We Are: stack below desktop --------------------------------------
+   Additional CSS applies an unscoped 2-col grid on .e-con.elementor-element-who01c
+   (plus padding-left/right: 24px longhands). Inner-grid stacks in v24.7 never
+   win because .e-con-inner is display:contents. Tablet 768 is 302+370. */
+@media (max-width: 1024px) {
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c,
+  body.home .elementor-element-who01c,
+  body.front-page .elementor-element-who01c,
+  body.home .elementor-element-who01c .e-con-inner,
+  body.front-page .elementor-element-who01c .e-con-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
+  }
+
+  body.home .elementor-element-who02col1,
+  body.home .elementor-element-who04col2,
+  body.front-page .elementor-element-who02col1,
+  body.front-page .elementor-element-who04col2 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    grid-column: 1 / -1 !important;
+  }
+}
+
+/* --- Who We Are: mobile copy width ----------------------------------------
+   v24.7 + Additional CSS set who04col2 / p { padding-right: 72px } at ≤767
+   and who01c padding-left/right 24px longhands, shrinking copy to 270px. */
+@media (max-width: 767px) {
+  body.home .e-con.elementor-element-who01c,
+  body.front-page .e-con.elementor-element-who01c,
+  body.home .elementor-element-who01c,
+  body.front-page .elementor-element-who01c {
+    padding: 40px 16px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  body.home .elementor-element-who04col2,
+  body.front-page .elementor-element-who04col2,
+  body.home .elementor-element-who04col2 p,
+  body.front-page .elementor-element-who04col2 p {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
